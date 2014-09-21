@@ -11,7 +11,7 @@ echo "using '$BASE_DIR' as... well, base directory."
 
 mkdir -p $BASE_DIR/dist
 
-if [[ ! -r $BASE_DIR/dist/logstash-forwarder ]]
+if [[ ! -f $BASE_DIR/dist/logstash-forwarder ]]
 then
   echo "going to build '$BASE_DIR/dist/logstash-forwarder'..."
   cd $BASE_DIR/logstash-forwarder-build
@@ -19,7 +19,7 @@ then
   mv $BASE_DIR/logstash-forwarder-build/logstash-forwarder $BASE_DIR/dist/logstash-forwarder
 fi
 
-if [[ ! -r $BASE_DIR/dist/logstash/logstash.crt || ! -r $BASE_DIR/dist/logstash/logstash.key ]]
+if [[ ( ! -f $BASE_DIR/dist/logstash.crt ) || ( ! -f $BASE_DIR/dist/logstash.key ) ]]
 then
   echo "going to build '$BASE_DIR/dist/logstash.{crt,key}'..."
   cd $BASE_DIR/logstash-certs

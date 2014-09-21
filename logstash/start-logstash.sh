@@ -11,4 +11,4 @@ fi
 
 cd /logstash
 
-/logstash/bin/logstash -f /logstash.conf --debug
+/logstash/bin/logstash -f /logstash.conf # --debug
