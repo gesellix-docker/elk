@@ -1,0 +1,11 @@
+.idea/
+*.iml
+*.tar.gz
+
+/dist/logstash.crt
+/dist/logstash.key
+/dist/logstash-forwarder
+/logstash/logstash.crt
+/logstash/logstash.key
+/logstash-forwarder/logstash.crt
+/logstash-forwarder/logstash-forwarder

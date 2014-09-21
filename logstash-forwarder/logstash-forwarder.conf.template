@@ -1,0 +1,14 @@
+{
+  "network": {
+    "servers": [ "logstash:5043" ],
+    "ssl ca": "/logstash-certs/logstash.crt"
+  },
+  "files": [
+    {
+      "dead time": "99999h",
+      "paths": [
+        "/logs/*.log"
+      ]
+    }
+  ]
+}

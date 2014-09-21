@@ -1,0 +1,29 @@
+input {
+  lumberjack {
+    port => 5043
+
+    ssl_certificate => "/logstash-certs/logstash.crt"
+    ssl_key => "/logstash-certs/logstash.key"
+  }
+}
+filter {
+  if [type] == "tomcat-access" {
+    grok {
+      match => [ "message" , "%{IPORHOST:clientip} %{USER:ident} %{USER:auth} \[%{TIMESTAMP_ISO8601:logtimestamp}\] \"%{WORD:method} %{URIPATH:uri_path}(%{URIPARAM:params}|) %{DATA:protocol}\" %{NUMBER:code} (%{NUMBER:bytes}|%{DATA})" ]
+    }
+  }
+  if [type] == "application-log" {
+    grok {
+      match => [ "message" , "(?m)%{TIMESTAMP_ISO8601:logtimestamp} \[%{DATA:thread}\] %{LOGLEVEL:loglevel}%{SPACE}%{DATA:stage} %{DATA:logger} - %{GREEDYDATA:logmessage}" ]
+    }
+  }
+  if ([uri_path] =~ /^.*(\/health)/) {
+    drop{}
+  }
+}
+output {
+  elasticsearch_http {
+    host => "elasticsearch"
+  }
+  stdout { }
+}

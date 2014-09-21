@@ -1,0 +1,16 @@
+{
+  "name": "kibana",
+  "version": "3.1.0",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/elasticsearch/kibana.git"
+  },
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "connect": "^3.2.0",
+    "serve-static": "^1.6.1"
+  }
+}
